@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <header></header>
-    <main></main>
+    <main>
+      Le projet fonctionne
+      <div>{{ $store.state.fish.length }} fishes</div>
+    </main>
   </div>
 </template>
 
@@ -25,5 +28,6 @@ header {
 }
 main {
   overflow-y: hidden;
+  font-size: 120px;
 }
 </style>
