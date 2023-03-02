@@ -1,4 +1,4 @@
-#TME 1 Frontend
+# TME 1 Frontend
 
 Le but de ce TME est de commencer le projet frontend du backoffice.
 Ce projet utilisera Vuejs.
