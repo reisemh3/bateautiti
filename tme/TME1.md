@@ -8,6 +8,7 @@ Les objectifs de la séance sont :
 - lancer le projet en local
 - afficher la liste de produits déjà présent dans le store du projet
 - commencer la création des composants nécessaire au développement des pages du backoffice
+- utiliser des données d'une API distante
 
 ## Exercice 1: Installation de l'environment
 
