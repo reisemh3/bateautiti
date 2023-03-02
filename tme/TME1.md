@@ -30,6 +30,14 @@ Vérifiez que le projet tourne bien sur le port 8080
 
 http://localhost:8080
 
+(Si vous avez de multiples erreurs sur des caractère inconnu il peut être utile de lancer à la racine de l'application :
+
+```sh
+yarn prettier --write .
+```
+
+)
+
 ## Exercice 2: Première modifications
 
 Si la couleur du header ne vous satisfait pas, changez la !
