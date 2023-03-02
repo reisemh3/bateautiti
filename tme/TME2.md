@@ -35,3 +35,18 @@ fetch(URL, {
   headers: { authorization: `Bearer ${token}` },
 })
 ```
+
+## Exercice 3
+
+L'access token a une durée de validité limitée mais il est possible de récupérer un autre token sans redemander le login/password à l'utilisateur grâce au refresh token.
+
+Exemple:
+
+```typescript
+fetch(URL, {
+  method: 'POST',
+  body: { refresh: `${token}` },
+})
+```
+
+Implémentez la logique qui refresh le token automatiquement lorsque celui ci n'est plus valide.
