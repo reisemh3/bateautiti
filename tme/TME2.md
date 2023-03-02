@@ -1,52 +1,65 @@
 # TME 2 Frontend
 
-Le but de ce TME est de gérer l'authentification dans le projet.
-Pour ce projet on utilisera des <a href="https://jwt.io/">JWT</a>.
+Le but de ce TME est de commencer les différents écran du projet.
 
-Le projet backend doit nous fournir des routes REST permettant de récupérer deux types de token :
+Les objectifs de la séance sont :
 
-- access token
-- refresh token
+- configurer le routeur
+- afficher la liste de produits
+- modifier un élément
+- afficher des statistiques
 
-Si vous avez finis le TME de sécurité en backend vous devez avoir des routes "sécurisées", qui ne permettent pas d'accèder sans headers authorizations. (renvoie une erreur 401 ou 403)
+si les routes backend n'ont pas encore été créé on peut se contenter d'un bouchon dans les fonctions du module `api`
 
-## Exercice 1
+(bouchon: une fonction ou module simulant le fonctionnement réel pas encore implémenté)
 
-Créer une page de login permettant de récupérer les tokens.
+## Exercice 1: Le routeur
 
-Si vous avez une route de création d'utilisateur créez également une page pour créer un compte.
+Créez les fichiers `.vue` pour chacune des routes suivantes :
 
-Stocker ces tokens dans le store (et le localstorage).
+- liste (ou home sur le `/`)
+- détails d'un élément (`/product/id`)
+- un formulaire de modification du produit
+- les statistiques de ventes
 
-Gérer le routeur pour que quand un token valide est présent la route par défaut arrive sur le home sinon directement sur la page login.
+Certaines de ces pages n'ont pas encore été implémenté il est possible de juste créer le squelette du composant vue.
 
-## Exercice 2
+## Exercice 2: La liste
 
-Modifier vos fonctions qui appellent l'API pour qu'elles utilisent un token.
+Se baser sur la liste créée au TME d'avant.
 
-Vérifier que vous arrivez bien à afficher les données comme au TME précédent.
+La seul différence est qu'il faut ajouter un lien vers la route de détail et de modification lorsqu'on clique sur un élément.
 
-Rappel:
+## Exercice 3 détail et modification
 
-Vous devez ajouter un header `authorization` qui "bear" le token :
+Créer une page qui va chercher l'id dans l'url.
 
-```typescript
-fetch(URL, {
-  headers: { authorization: `Bearer ${token}` },
-})
-```
+`http://localhost:8080/product/7` => ici `id=7`
 
-## Exercice 3
+Et qui affiche les détail du produit (chercher les info du produit dans le store).
 
-L'access token a une durée de validité limitée mais il est possible de récupérer un autre token sans redemander le login/password à l'utilisateur grâce au refresh token.
+On doit pouvoir également passer en mode formulaire pour modifier ce produit.
 
-Exemple:
+Quand on enregistre on envoie la modification au backend et on modifie la valeur dans le store si l'appel au backend réussis, sinon on affiche l'erreur.
 
-```typescript
-fetch(URL, {
-  method: 'POST',
-  body: { refresh: `${token}` },
-})
-```
+## Exercice 4 Statistiques
 
-Implémentez la logique qui refresh le token automatiquement lorsque celui ci n'est plus valide.
+Ici on veut créer une page de statistiques de ventes (les ventes sont fournis dans un fichier json dans le repo : `ventes.json`).
+
+Vous pouvez choisir le plugin de chart que vous voulez :
+
+- Chart.js
+- ApexCharts
+- jscharting
+- fusionChart
+- echarts
+
+La page doit charger toutes les statistiques et afficher :
+
+- le nombre de ventes
+- le nombre de ventes par semaine
+- le chiffres d'affaire global
+- le chiffres d'affaire par semaine
+- la repartitions des ventes par produits (en utilisant les quantités de produits pas le nombre de vente)
+
+et d'autres statistiques qui vous semblerez cohérentes.
