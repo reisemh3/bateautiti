@@ -1,3 +1,4 @@
+<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="home">
     <header></header>
@@ -28,8 +29,8 @@
       <div class="bg-white p-8 rounded-md w-full">
         <div class="flex items-center justify-between pb-6">
           <div>
-            <h2 class="text-gray-600 font-semibold">Products Oder</h2>
-            <span class="text-xs">All products item</span>
+            <h2 class="text-gray-600 font-semibold">Commander produits</h2>
+            <span class="text-xs">Tous nos produits</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex bg-gray-50 items-center p-2 rounded-md">
@@ -78,43 +79,33 @@
                     <th
                       class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                     >
-                      Name
+                      Produit
                     </th>
                     <th
                       class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
                     >
-                      category
+                      Category
                     </th>
                     <th
                       class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
                     >
-                      price
+                      Prix unitaire
                     </th>
                     <th
                       class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
                     >
-                      unit
+                      Disponibilité
                     </th>
                     <th
                       class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
                     >
-                      availability
-                    </th>
-                    <th
-                      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                    >
-                      discount
-                    </th>
-                    <th
-                      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                    >
-                      comments
+                      Réduction
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr
-                    class="text-center px-5 py-5 border-b border-gray-200 bg-white text-sm hover:bg-sky-100 hover:text-sky-900 last:border-none transition-all duration-300 ease-in-out"
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm hover:bg-sky-100 hover:text-sky-900 last:border-none transition-all duration-300 ease-in-out"
                     id="produits-liste"
                     v-for="fish in $store.state.fish"
                     :key="fish.id"
@@ -132,35 +123,30 @@
                           <p class="text-gray-900 whitespace-no-wrap">
                             {{ fish.name }}
                           </p>
+                          <p class="text-gray-400 whitespace-no-wrap">
+                            {{ fish.comments }}
+                          </p>
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span v-if="$store.state.fish.category > 1"
-                        >Crustaceans</span
-                      >
-                      <span v-else-if="$store.state.fish.category < 1"
-                        >Fish</span
-                      >
-                      <span v-else>Seafood</span>
+                    <td class="text-center">
+                      <span v-if="(fish.category === 0)">Poissons</span>
+                      <span v-else-if="(fish.category === 1)">Coquillages</span>
+                      <span v-else-if="(fish.category === 2)">Crustacés</span>
+                      <span v-else>Non défini</span>
                     </td>
-                    <td>{{ fish.price }} €</td>
-                    <td>{{ fish.unit }}</td>
-                    <td>
-                      <span
-                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
-                      >
-                        <span
-                          aria-hidden
-                          class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                        ></span>
-                        <span v-if="condition" class="relative">{{
-                          fish.availability
-                        }}</span>
+                    <td class="text-center">
+                      {{ fish.price }} € / {{ fish.unit }}
+                    </td>
+                    <td class="text-center">
+                      <span class="relative inline-block px-3 py-1 font-semibold leading-tight">
+                        <!-- <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span> -->
+                        <span aria-hidden v-if="(fish.availability === true)" class="relative inset-0 bg-green-200 opacity-80 rounded-lg text-green-900"> - En stock - </span>
+                        <span aria-hidden v-else-if="(fish.availability === false)" class="relative inset-0 bg-red-200 opacity-80 rounded-lg text-red-900"> - Indisponible - </span>
+                        <span aria-hidden v-else>?</span>
                       </span>
                     </td>
-                    <td>{{ fish.discount }}</td>
-                    <td>{{ fish.comments }}</td>
+                    <td class="text-center">{{ fish.discount }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -174,13 +160,13 @@
                   <button
                     class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l"
                   >
-                    Prev
+                    Précédent
                   </button>
                   &nbsp; &nbsp;
                   <button
                     class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r"
                   >
-                    Next
+                    Suivant
                   </button>
                 </div>
               </div>
@@ -193,32 +179,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "HomeView",
+  name: 'HomeView',
   components: {},
   data() {
     return {
       fish: [
         {
           id: 12,
-          name: "Aile de raie",
+          name: 'Aile de raie',
           category: 0,
           price: 10.0,
-          unit: "kg",
+          unit: 'kg',
           availability: true,
           sale: false,
           discount: 0.0,
-          comments: "Pêche à la corde",
-          owner: "tig",
+          comments: 'Pêche à la corde',
+          owner: 'tig',
         },
         // other fish items
       ],
       condition: true,
-    };
+    }
   },
-});
+})
 </script>
 
 <style>
