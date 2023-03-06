@@ -10,7 +10,7 @@
           Le Bateau de Thibault!
         </p>
         <p class="text-gray-500 text-lg">
-          {{ $store.state.fish.length }} produits
+          Nos {{ $store.state.fish.length }} produits de notre terroir maritimes.
         </p>
       </div>
       <br />
@@ -51,19 +51,19 @@
                 type="text"
                 name=""
                 id=""
-                placeholder="search..."
+                placeholder="recherche..."
               />
             </div>
             <div class="lg:ml-40 ml-10 space-x-8">
               <button
-                class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+                class="bg-blue-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
               >
-                New Report
+                Panier
               </button>
               <button
-                class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+                class="bg-blue-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
               >
-                Card
+                Contact
               </button>
             </div>
           </div>
@@ -110,12 +110,12 @@
                     v-for="fish in $store.state.fish"
                     :key="fish.id"
                   >
-                    <td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 w-10 h-10">
                           <img
                             class="w-full h-full rounded-full"
-                            src="https://api.unsplash.com/photos/random?query=${{fish.name}}"
+                            src="https://picsum.photos/seed/${{name}}/500/500"
                             alt=""
                           />
                         </div>
@@ -141,8 +141,8 @@
                     <td class="text-center">
                       <span class="relative inline-block px-3 py-1 font-semibold leading-tight">
                         <!-- <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span> -->
-                        <span aria-hidden v-if="(fish.availability === true)" class="relative inset-0 bg-green-200 opacity-80 rounded-lg text-green-900"> - En stock - </span>
-                        <span aria-hidden v-else-if="(fish.availability === false)" class="relative inset-0 bg-red-200 opacity-80 rounded-lg text-red-900"> - Indisponible - </span>
+                        <span aria-hidden v-if="(fish.availability === true)" class="relative inset-0 bg-green-200 opacity-80 rounded-lg text-green-900"> &nbsp; En stock &nbsp; </span>
+                        <span aria-hidden v-else-if="(fish.availability === false)" class="relative inset-0 bg-red-200 opacity-80 rounded-lg text-red-900"> &nbsp; Indisponible &nbsp; </span>
                         <span aria-hidden v-else>?</span>
                       </span>
                     </td>
