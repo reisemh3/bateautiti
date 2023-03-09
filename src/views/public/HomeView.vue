@@ -1,10 +1,9 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
   <div class="home">
-    <header></header>
     <main>
       <div class="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
-        <p class="text-3xl text-gray-700 font-bold mb-5">Le Bateau de Thibault!</p>
+        <p class="text-3xl text-gray-700 font-bold mb-5">Le seul intermédiaire entre la mer et vous, c'est nous!</p>
         <p class="text-gray-500 text-lg">Nos {{ $store.state.fish.length }} produits de notre terroir maritimes.</p>
       </div>
       <br />
@@ -81,7 +80,7 @@
                       </span>
                       <span v-else-if="(fish.availability === false)" class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
                         <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                        <span class="relative">Inactive</span>
+                        <span class="relative">Hors stock</span>
                       </span>
                       <span v-else class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                         <span aria-hidden class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
