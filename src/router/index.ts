@@ -1,37 +1,39 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/public/HomeView.vue'
-import ArticleView from '@/views/public/ArticleView.vue'
-import PanierView from '@/views/public/PanierView.vue'
-import AboutView from '@/views/public/AboutView.vue'
-
-import NotFound from '@/views/public/NotFound.vue'
+// import { HomeView, ArticleView, PanierView, AboutView } from '@/views/public'
+import * as Public from '@/views/public'
+import * as Admin from '@/views/admin'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
-    // component: () => import(/* */ '../views/HomeView.vue'),
+    name: 'public',
+    component: Public.Layout,
+    children: [
+      { path: '/', name: 'home', component: Public.HomeView },
+      { path: '/article', name: 'Article', component: Public.ArticleView },
+      { path: '/panier', name: 'Panier', component: Public.PanierView },
+      { path: '/contact', name: 'contact', component: Public.AboutView },
+      // component: () => import(/* */ '../views/ArticleView.vue'),
+    ],
   },
   {
-    path: '/article',
-    name: 'Article',
-    component: ArticleView,
-  },
-  {
-    path: '/panier',
-    name: 'Panier',
-    component: PanierView,
-  },
-  {
-    path: '/contact',
-    name: 'contact',
-    component: AboutView,
-    // component: () => import(/* */ '../views/ArticleView.vue'),
+    path: '/admin',
+    name: 'admin',
+    component: Admin.AdminLayout,
+    children: [
+      { path: 'dashboard', name: 'dashboard', component: Admin.Dashboard },
+      { path: 'users/index', component: Admin.UserIndex },
+      { path: 'users/add', component: Admin.UserAdd },
+      { path: 'users/edit/:id', component: Admin.UserEdit },
+
+      { path: 'products/index', component: Admin.ProductIndex },
+      { path: 'products/add', component: Admin.ProductAdd },
+      { path: 'products/edit/:id', component: Admin.ProductEdit },
+    ],
   },
   {
     path: '/:pathMatch(.*)*',
-    component: NotFound,
+    component: Public.NotFound,
     // redirect: '/',
   },
 ]
