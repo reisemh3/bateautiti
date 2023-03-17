@@ -191,13 +191,13 @@ export default createStore({
   modules: {},
 })
 
-fetch('http://51.255.166.155:1352/tig/products/')
-  .then(response => response.json())
-  .then(data => {
-    // Utilisez la variable `data` pour afficher la liste des produits sur votre page
-    console.log(data)
-  })
-  .catch(error => {
-    // Gérez les erreurs éventuelles ici
-    console.error(error)
-  })
+// fetch('http://51.255.166.155:1352/tig/products/')
+//   .then(response => response.json())
+//   .then(data => {
+//     // Utilisez la variable `data` pour afficher la liste des produits sur votre page
+//     console.log(data)
+//   })
+//   .catch(error => {
+//     // Gérez les erreurs éventuelles ici
+//     console.error(error)
+//   })

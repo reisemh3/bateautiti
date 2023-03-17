@@ -2,6 +2,10 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 // import { HomeView, ArticleView, PanierView, AboutView } from '@/views/public'
 import * as Public from '@/views/public'
 import * as Admin from '@/views/admin'
+import Login from '@/views/auth/Login.vue'
+import { authGuard } from '@/_helpers/auth-guard'
+
+localStorage.setItem('token', 'admin')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,15 +25,35 @@ const routes: Array<RouteRecordRaw> = [
     name: 'admin',
     component: Admin.AdminLayout,
     children: [
-      { path: 'dashboard', name: 'dashboard', component: Admin.Dashboard },
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: Admin.Dashboard,
+        meta: { requiresAuth: true },
+      },
       { path: 'users/index', component: Admin.UserIndex },
       { path: 'users/add', component: Admin.UserAdd },
-      { path: 'users/edit/:id', component: Admin.UserEdit },
+      {
+        path: 'users/edit/:id(\\d+)',
+        component: Admin.UserEdit,
+        props: true,
+      },
 
       { path: 'products/index', component: Admin.ProductIndex },
       { path: 'products/add', component: Admin.ProductAdd },
-      { path: 'products/edit/:id', component: Admin.ProductEdit },
+      {
+        path: 'products/edit/:id(\\d+)',
+        component: Admin.ProductEdit,
+        props: true,
+      },
+      { path: '/:pathMatch(.*)*', redirect: '/admin/dashboard' },
     ],
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    // beforeEnter: authGuard,
   },
   {
     path: '/:pathMatch(.*)*',
@@ -41,6 +65,17 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+})
+
+// Verrouillage partie administrator
+router.beforeEach((to, from, next) => {
+  if (to.matched[0].name == 'admin') {
+    authGuard()
+  }
+  // if (to.meta.requiresAuth) {
+  //   authGuard()
+  // }
+  next()
 })
 
 export default router

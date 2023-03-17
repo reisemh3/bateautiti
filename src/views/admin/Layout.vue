@@ -6,11 +6,13 @@
       <div id="ad_side">
         <AdminNav />
       </div>
-      <div id="ad_display" class="relative md:ml-64 bg-blueGray-100 w-full">
+      <div id="ad_display" class="relative md:ml-64 bg-blueGray-100">
         <router-view />
       </div>
+      <div id="ad_footer" class="relative md:ml-64">
+        <PublicFoot />
+      </div>
     </div>
-    <PublicFoot />
   </div>
 </template> 
 
