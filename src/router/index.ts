@@ -5,7 +5,7 @@ import * as Admin from '@/views/admin'
 import Login from '@/views/auth/Login.vue'
 import { authGuard } from '@/_helpers/auth-guard'
 
-localStorage.setItem('token', 'admin')
+// localStorage.setItem('token', 'admin')
 
 const routes: Array<RouteRecordRaw> = [
   {
