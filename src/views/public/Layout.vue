@@ -10,6 +10,8 @@
 <script>
 import PublicNav from '@/components/PublicNav.vue'
 import PublicFoot from '@/components/PublicFoot.vue'
+// import { mapGetters, mapMutations, mapActions } from 'vuex'
+
 export default {
   name: 'PublicLayout',
   components: {

@@ -18,7 +18,7 @@
 
 <script>
 import AdminNav from '@/components/AdminNav.vue'
-import PublicNav from '@/components/PublicNav.vue'
+// import PublicNav from '@/components/PublicNav.vue'
 import PublicFoot from '@/components/PublicFoot.vue'
 
 export default {

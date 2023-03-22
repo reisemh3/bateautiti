@@ -1,9 +1,19 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
   <main class="grow">
+    <NotifBar/>
     <router-view />
   </main>
 </template>
+
+<script>
+import NotifBar from '@/components/NotifBar.vue'
+export default {
+  components: {
+    NotifBar,
+  },
+}
+</script>
 
 <style>
 body {

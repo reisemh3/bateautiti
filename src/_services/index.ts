@@ -1,2 +1,4 @@
 export * from './account.service'
-export * from './user.servive'
+export * from './user.service'
+export * from './cocktail.service'
+export * from './fish.service'

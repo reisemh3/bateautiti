@@ -388,10 +388,10 @@ export default defineComponent({
 </script>
 
 <style>
-.home {
+/* .home {
 }
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 </style>

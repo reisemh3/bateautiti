@@ -52,7 +52,7 @@
             type="text"
             name=""
             id="user_email"
-            placeholder="Adresse Email"
+            placeholder="Put your email"
             v-model="user.email"
           />
         </div>
@@ -89,7 +89,7 @@
             >Mot de passe oublié ?
           </span>
         </div>
-        <div class="">
+        <div>
           <button
             type="submit"
             class="button block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
@@ -136,38 +136,9 @@ export default {
           this.$router.push('/admin/dashboard')
         })
         .catch(err => console.error(err))
-      // fetch('http://localhost/8888/auth/login')
-      // fetch('http://127.0.0.1:8000/', {
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   methods: 'POST',
-      //   body: JSON.stringify(this.user),
-      // })
-      //   .then(blob => blob.json())
-      //   .then(data => {
-      //     console.log(data)
-      //     localStorage.setItem('token', data.acces_token)
-      //     this.$router.push('/admin/dashboard')
-      //   })
-      //   .catch(err => console.log(err))
     },
   },
 }
-
-// import axios from 'axios'
-
-// export default {
-//   data() {
-//     return {
-//       messages: ["TEST", "TEST2", "Message"]
-//     }
-//   },
-//   created(){
-//     axios.get('http://127.0.0.1:8000/')
-//   }
-// }
 </script>
 
 <style>

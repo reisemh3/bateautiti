@@ -1,7 +1,8 @@
 /*  Import des modules necessaires  */
 import Axios from './caller.service'
+import store from '../store'
 
-const login = (credentials: any) => {
+const login = (credentials: unknown) => {
   return Axios.post('/auth/login', credentials)
 }
 

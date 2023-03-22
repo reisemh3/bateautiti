@@ -90,13 +90,33 @@
             <router-link to="/admin/products/edit/:id">Editer</router-link>
           </a>
         </div>
+        <div class="md:flex-col md:min-w-full flex flex-col list-none">
+          <hr class="my-4 md:min-w-full" />
+          <a
+            @click="logout()"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 lg:mt-0"
+            >Logout</a
+          >
+        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { accountService } from '@/_services'
+// import { mapGetters } from 'vuex'
+
 export default {
   name: 'AdminNav',
+  methods: {
+    logout() {
+      accountService.logout()
+      this.$router.push('/')
+    },
+  },
+  // computed: {
+  //   ...mapGetters(['getMarcel']),
+  // },
 }
 </script>

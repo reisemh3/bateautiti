@@ -113,9 +113,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default defineComponent({
   name: 'HomeView',
@@ -144,10 +144,10 @@ export default defineComponent({
 </script>
 
 <style>
-.home {
+/* .home {
 }
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 </style>
