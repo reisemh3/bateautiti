@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueApexCharts from 'vue3-apexcharts'
 
 library.add(faTrash)
 library.add(faEdit)
@@ -12,5 +12,5 @@ library.add(faEdit)
 createApp(App)
   .use(store)
   .use(router)
-  .component('fa-icon', FontAwesomeIcon)
+  .component('apexchart', VueApexCharts)
   .mount('#app')

@@ -13,12 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'public',
     component: Public.Layout,
     children: [
-      { path: '/', name: 'home', component: Public.HomeView },
-      { path: '/article', name: 'Article', component: Public.ArticleView },
-      { path: '/cocktails', name: 'cocktails', component: Public.Cocktail },
-      { path: '/panier', name: 'Panier', component: Public.PanierView },
-      { path: '/contact', name: 'contact', component: Public.AboutView },
-      // component: () => import(/* */ '../views/ArticleView.vue'),
+      { path: '/', name: 'Home', component: Public.HomeView },
+      { path: '/products', name: 'Products', component: Public.ProductView },
+      { path: '/statistics', name: 'Statistics', component: Public.StatsView },
+      // { path: '/cocktails', name: 'cocktails', component: Public.Cocktail },
+      // { path: '/panier', name: 'Panier', component: Public.PanierView },
+      { path: '/contact', name: 'Contact', component: Public.AboutView },
     ],
   },
   {
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'dashboard',
-        name: 'dashboard',
+        name: 'Dashboard',
         component: Admin.Dashboard,
         // meta: { requiresAuth: true },
       },
@@ -41,17 +41,17 @@ const routes: Array<RouteRecordRaw> = [
         props: true,
       },
 
-      {
-        path: 'cocktails/index',
-        name: 'cList',
-        component: Admin.CocktailIndex,
-      },
-      {
-        path: 'cocktails/edit/:id(\\d+)?',
-        name: 'cEdit',
-        component: Admin.CocktailEdit,
-        props: true,
-      },
+      // {
+      //   path: 'cocktails/index',
+      //   name: 'cList',
+      //   component: Admin.CocktailIndex,
+      // },
+      // {
+      //   path: 'cocktails/edit/:id(\\d+)?',
+      //   name: 'cEdit',
+      //   component: Admin.CocktailEdit,
+      //   props: true,
+      // },
 
       { path: 'products/index', name: 'pList', component: Admin.ProductIndex },
       { path: 'products/add', component: Admin.ProductAdd },

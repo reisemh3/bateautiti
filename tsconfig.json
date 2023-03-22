@@ -6,6 +6,7 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,6 +20,8 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
+    "src/**/*.json",
+    "ventes/**/*.json",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

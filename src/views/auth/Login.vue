@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="h-screen flex">
     <div
@@ -24,7 +25,7 @@
       </div>
     </div>
     <div class="flex w-1/2 justify-center items-center bg-white">
-      <form @submit.prevent="login">
+      <form v-on:submit.prevent="submit">
         <h1 class="text-gray-800 font-bold text-2xl mb-1">
           Bonjour à nouveau!
         </h1>
@@ -47,13 +48,13 @@
             />
           </svg>
           <input
-            for="user_email"
+            for="user_name"
             class="pl-2 outline-none border-none"
             type="text"
             name=""
-            id="user_email"
-            placeholder="Put your email"
-            v-model="user.email"
+            id="user_name"
+            placeholder="Username"
+            v-model="name"
           />
         </div>
         <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
@@ -72,11 +73,11 @@
           <input
             for="user_password"
             class="pl-2 outline-none border-none"
-            type="text"
+            type="password"
             name=""
             id="user_password"
-            placeholder="Mot de Passe"
-            v-model="user.password"
+            placeholder="password"
+            v-model="password"
           />
         </div>
 
@@ -92,7 +93,7 @@
         <div>
           <button
             type="submit"
-            class="button block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+            class="button block w-full bg-indigo-600 hover:bg-indigo-400 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
           >
             Connexion
           </button>
@@ -106,6 +107,9 @@
             />
             <button>Se connecter avec Google</button>
           </div>
+          <div v-if="$store.state.error">
+            <div class="text-red-500">{{ $store.state.error }}</div>
+          </div>
         </div>
       </form>
     </div>
@@ -114,31 +118,59 @@
 
 <script>
 import { accountService } from '@/_services'
+import { login, loggedIn, fillArray } from '@/_helpers/auth-guard'
+import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Login',
   data() {
     return {
-      user: {
-        email: '',
-        password: '',
-      },
+      name: '',
+      password: '',
     }
   },
   methods: {
-    login() {
-      accountService
-        .login(this.user)
-        .then(res => {
-          // console.log(res.data)
-          accountService.saveToken(res.data.acces_token)
-          this.$router.push('/admin/dashboard')
-        })
-        .catch(err => console.error(err))
+    submit() {
+      console.log(this.name)
+      console.log(this.password)
+      login(this.name, this.password)
+        .then(() => console.log('fillArray'))
+        .then(() => fillArray())
+        .then(() => console.log('push'))
+        .then(() => this.$router.push('/'))
+        .then(() => console.log('loadAllFish'))
+        .then(this.$store.commit('loadAllFish'))
     },
   },
 }
+
+/**
+ * Ancienne methode de login avec BDD
+ */
+
+// export default {
+//   // eslint-disable-next-line vue/multi-word-component-names
+//   name: 'Login',
+//   data() {
+//     return {
+//       user: {
+//         email: '',
+//         password: '',
+//       },
+//     }
+//   },
+//   methods: {
+//     login() {
+//       accountService
+//         .login(this.user)
+//         .then(res => {
+//           // console.log(res.data)
+//           accountService.saveToken(res.data.acces_token)
+//           this.$router.push('/admin/dashboard')
+//         })
+//         .catch(err => console.error(err))
+//     },
+//   },
+// }
 </script>
 
 <style>

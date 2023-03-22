@@ -374,16 +374,81 @@
         </div>
       </div>
     </div>
+    <div v-if="fish">
+        <div v-if="fish" class="bloc grid grid-cols-2 p-4 max-w-[50%]">
+          <div class="text-3xl pb-16">
+            {{ fish.name }}
+          </div>
+          <div>
+            <div v-if="fish.sale" class="rotate-12 text-red-600">
+              En promotion !
+            </div>
+          </div>
+
+          <div class="text-sm italic font-light">
+            {{
+              fish.comments == ''
+                ? 'Pas de description supplémentaire'
+                : fish.comments
+            }}
+          </div>
+          <div>
+            <div>{{ fish.sale ? fish.discount + '€ /' + fish.unit : fish.price + '€ /' + fish.unit }}</div>
+          </div>
+        </div>
+        <div class="p-4">
+          <button class="button" v-on:click="$router.back()">Back</button>
+          <button class="button" v-on:click="openWindow(fish.id)">Edit</button>
+          <button class="delete-btn" v-on:click="deleteFish(fish)">
+            Delete
+          </button>
+        </div>
+      </div>
+      <div v-else>
+        <div class="m-8 text-2xl">No fish found</div>
+      </div>
   </div>
 </div></template>
 
 <script lang="ts">
+import { loggedIn } from '@/_helpers/auth-guard'
+import store from '@/store'
 import { defineComponent } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Articles',
+  name: 'ProductsView',
   components: {},
+  methods: {
+    openWindow(id: string | URL | undefined) {
+      this.$router.push('/edit/' + id)
+    },
+    deleteFish(fish: any) {
+      store.commit('deleteFish', fish)
+      this.$router.push('/')
+    },
+  },
+  computed: {
+    fish() {
+      const id = Number(this.$route.params.id)
+      const fish = this.$store.state.fishArray.find(
+        (fish: { id: number }) => fish.id === id
+      )
+      console.log(fish)
+      return fish || null
+    },
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter')
+    loggedIn().then(res => {
+      console.log('loggedIn : ' + res)
+      if (!res) {
+        next('/login')
+      } else {
+        // next();
+      }
+    })
+  },
 })
 </script>
 

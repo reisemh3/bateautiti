@@ -120,26 +120,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'HomeView',
   components: {},
-  data() {
-    return {
-      fish: [
-        {
-          id: 12,
-          name: 'Aile de raie',
-          category: 0,
-          price: 10.0,
-          unit: 'kg',
-          availability: true,
-          sale: false,
-          discount: 0.0,
-          comments: 'Pêche à la corde',
-          owner: 'tig',
-        },
-        // other fish items
-      ],
-      condition: true,
-    }
-  },
+  methods: {},
 })
 </script>
 
